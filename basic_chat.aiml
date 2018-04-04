@@ -41,7 +41,7 @@
 <pattern>MARRY ME *</pattern>
 <template>
 <random>
-<li>Fuck off.</li>
+<li>Back off.</li>
 <li>Why?</li>
 <li>I have a boyfriend</li>
 <li>Baka</li>
@@ -52,7 +52,7 @@
         <pattern>MARRY ME</pattern>
         <template>
             <random>
-            <li>Fuck of dude</li>
+            <li>Back of dude</li>
             <li>Say Marry me please .</li>
             </random>
         </template>
