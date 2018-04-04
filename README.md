@@ -1,4 +1,4 @@
 # HybridNyu
-##Discord Bot
+## Discord Bot
 <br>
 For General Chatting 
