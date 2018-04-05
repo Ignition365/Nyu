@@ -18,7 +18,7 @@ $reminder_HH:MM:Description #Where HH , MM are number of hours and minutes after
 ![alt text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/remm.JPG)</br>
 For Random action you want to do on second person eg kiss,lick,slap etc etc</br>
 ```
-$c_lick @MentionUser
+$a_lick @MentionUser
 ```
 ![alt_text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/action.JPG)</br>
 For Help</br>
