@@ -87,7 +87,7 @@ async def on_message(message):
                 action=message.content.split(" ")[0][3:]
 
                 # set the apikey and limit
-                apikey = "HPNVCWRXMK81"  # test value
+                apikey = "-x-sd"  # test value
                 lmt = 8
 
                 # load the user's anonymous ID from cookies or some other disk storage
