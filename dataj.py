@@ -16,11 +16,11 @@ def add_reminder(req, des,tunnel):
     obj.append((req, des,tunnel))
     c = con.cursor()
     c.executemany('INSERT INTO reminder_db(time_stamp,des,tunnel) VALUES (?,?,?)', obj)
-    print("came here add")
+    #print("came here add")
     c.execute("select time_stamp from reminder_db")
 
-    print([int(record[0]) for record in c.fetchall()])
-    print ("pre")
+    #print([int(record[0]) for record in c.fetchall()])
+    #print ("pre")
     del obj[:]
     con.commit()
 
@@ -29,7 +29,7 @@ def add_reminder(req, des,tunnel):
 def delete_reminder(id):
     con = sqlite3.connect("test.db")
     c = con.cursor()
-    print (id)
+    #print (id)
     c.execute('DELETE FROM reminder_db WHERE _id=?', (id,))
     con.commit()
-    print("came here delete")
+    #print("came here delete")

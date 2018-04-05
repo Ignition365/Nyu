@@ -22,16 +22,16 @@ else:
     kernel.saveBrain("bot_brain.brn")
     kernel.setBotPredicate("name","Nyu")
 def process_responce(msg):
-    print (msg)
+    #print (msg)
     bot_response = kernel.respond(msg)
-    print (bot_response)
+    #print (bot_response)
     return bot_response
 
 con = sqlite3.connect("test.db")
 c = con.cursor()
 c.execute(
     '''CREATE TABLE IF NOT EXISTS reminder_db(_id INTEGER PRIMARY KEY,time_stamp INTEGER NOT NULL,des TEXT NOT NULL,tunnel INTEGER NOT NULL)''')
-print('name[0]')
+#print('name[0]')
 con.commit()
 con.close()
 @client.event
@@ -51,7 +51,7 @@ async def on_message(message):
                 await client.send_message(message.channel, chat)
 
             elif message.content.startswith('$reminder_'):
-                print(message.channel)
+                #print(message.channel)
                 raw = message.content[10:].split(':')
                 hh = raw[0].strip()
                 mm =raw[1].strip()
@@ -59,13 +59,13 @@ async def on_message(message):
                 if des.strip() == "":
                     des="Reminder"
                 a = int(time.time())
-                print(hh)
-                print(mm)
+                #print(hh)
+                #print(mm)
 
                 if dataj.RepresentsInt(hh) and dataj.RepresentsInt(mm):
-                    print("calk")
+                    #print("calk")
                     requried = a + int(hh) * 3600 + int(mm) * 60 - 15
-                    print(requried)
+                    #print(requried)
                     dif = requried - a
                     if dif > 60:
                         dataj.add_reminder(requried, des,int(message.channel.id))
@@ -82,7 +82,7 @@ async def on_message(message):
                 msg = '```1) For Chatting : $c[Your Chat Message]\n\n2)Setting Reminder : $reminder_HH:MM:Description\n\nExample for setting reminder in 4  hours 5 minutes \n  $reminder_04:05:Example\n\n3) $a_hug,$a_kiss,$a_slap,$a_(any thing you want Nyu to do for someone)``` '.format(message)
                 await client.send_message(message.channel, msg)
             elif message.content.startswith('$a_'):
-                print("hey")
+                #print("hey")
                 k=randint(0, 7)
                 action=message.content.split(" ")[0][3:]
 
@@ -97,7 +97,7 @@ async def on_message(message):
                 r = requests.get("https://api.tenor.com/v1/anonid?key=%s" % apikey)
 
                 if r.status_code == 200:
-                    anon_id = json.loads(r.content)["anon_id"]
+                    anon_id = json.loads(r.content.decode('utf-8'))["anon_id"]
                     # store in db/cookies for re-use later
                 else:
                     anon_id = ""
@@ -112,7 +112,7 @@ async def on_message(message):
 
                 if r.status_code == 200:
                     # load the GIFs using the urls for the smaller GIF sizes
-                    top_8gifs = json.loads(r.content)
+                    top_8gifs = json.loads(r.content.decode('utf-8'))
                 else:
                     top_8gifs = None
 
@@ -131,7 +131,7 @@ async def on_message(message):
                 else:
                     msg = message.mentions[0].mention + ' you  got a '+action+' from '+ message.author.mention +'\n'+ rl.format(message)
 
-                    print (rl)
+                    #print (rl)
                 await client.send_message(message.channel, msg)
 
 
@@ -142,19 +142,19 @@ async def my_background_task():
     while not client.is_closed:
         now = time.time()
         now = int(now / 100)
-        print(now)
+        #print(now)
 
         con = sqlite3.connect("test.db")
 
         c = con.cursor()
         for row in c.execute('SELECT time_stamp FROM reminder_db'):
-            print(row)
-            print("bg_tup")
+            #print(row)
+            #print("bg_tup")
             k = row[0] / 100
-            print(k)
-            print("tup")
+            #print(k)
+            #print("tup")
             if int(k) == now:
-                print("came here")
+                #print("came here")
                 c.execute('SELECT des FROM reminder_db WHERE time_stamp=?', (row))
                 dss=c.fetchall()
                 c.execute('SELECT _id FROM reminder_db WHERE time_stamp=?', (row))
@@ -167,16 +167,16 @@ async def my_background_task():
                 await client.send_message( discord.Object(id=str(channel_id[0][0])), embed=embed)
                 dataj.delete_reminder(id[0][0])
         counter+=1
-        print (counter)
+        #print (counter)
         await asyncio.sleep(10)  # task runs every 10 seconds
 
 
 @client.event
 async def on_ready():
-    print('Logged in as')
-    print(client.user.name)
-    print(client.user.id)
-    print('------')
+     print('Logged in as')
+     print(client.user.name)
+     print(client.user.id)
+     print('------')
 
 client.loop.create_task(my_background_task())
-client.run('NDI2MDQ3MTIwNzgxMzQ0NzY4.DafLBA.rC5XDqBsOUTy1qVe8dwD-tTsct8')
+client.run('xxxx')
