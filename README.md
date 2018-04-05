@@ -13,7 +13,7 @@ $c(Your message)
 </br>
 For Setting Reminder </br>
 ```
-$reminder_HH:MM:Description #Where HH , MM are number of hours after you want Bot to send Reminder
+$reminder_HH:MM:Description #Where HH , MM are number of hours and minutes after you want Bot to send Reminder
 ```
 ![alt text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/remm.JPG)</br>
 For Random action you want to do on second person eg kiss,lick,slap etc etc</br>
