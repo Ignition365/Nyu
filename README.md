@@ -1,6 +1,6 @@
 # Nyu </br>
 ## Discord Bot</br>
-A basic reminder Bot set reminder at specified interval of time.</br>
+A basic Chatting and reminder Bot can send reminder at specified interval of time also can chat with you..</br>
 **BOT PREFIX**
 > $
 
