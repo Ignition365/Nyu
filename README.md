@@ -1,5 +1,6 @@
 # Nyu </br>
 ## Discord Bot</br>
+[![Discord Bots](https://discordbots.org/api/widget/426047120781344768.svg)](https://discordbots.org/bot/426047120781344768)</br>
 A basic Chatting and reminder Bot can send reminder at specified interval of time also can chat with you..</br>
 **BOT PREFIX**
 > $
