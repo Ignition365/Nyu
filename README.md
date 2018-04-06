@@ -16,12 +16,13 @@ For Setting Reminder </br>
 ```
 $reminder_HH:MM:Description #Where HH , MM are number of hours and minutes after you want Bot to send Reminder
 ```
-![alt text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/remm.JPG)</br>
+![alt text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/remm.JPG)
+</br>
 For Random action you want to do on second person eg kiss,lick,slap etc etc</br>
 ```
 $a_lick @MentionUser
 ```
-![alt_text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/cuddle.jpg)</br>
+![alt text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/cuddle.JPG)</br>
 For Help</br>
 ```
 $help
