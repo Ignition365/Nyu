@@ -32,13 +32,8 @@ About Me</br>
 ```
 $AboutMe
 ```
-</br></br>
+```
 
-```
-.
-```
-```
-.
 ```
 
 Package used 
