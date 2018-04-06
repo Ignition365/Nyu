@@ -27,10 +27,19 @@ For Help</br>
 ```
 $help
 ```
-![alt text](https://github.com/amangautam015/HybridNyu/blob/master/Nyu_help.JPG)</br></br>
+![alt text](https://github.com/amangautam015/HybridNyu/blob/master/Nyu_help.JPG)</br>
+About Me</br>
+```
+$AboutMe
+```
+</br></br>
 
----------------------------------------------------------------------------------------------------------</br>
----------------------------------------------------------------------------------------------------------</br>
+```
+.
+```
+```
+.
+```
 
 Package used 
 > discord.py
