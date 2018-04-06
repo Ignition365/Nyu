@@ -79,7 +79,7 @@ async def on_message(message):
                 await client.send_message(message.channel, msg)
 
             elif message.content.startswith('$help'):
-                msg = '```1) For Chatting : $c[Your Chat Message]\n\n2)Setting Reminder : $reminder_HH:MM:Description\n\nExample for setting reminder in 4  hours 5 minutes \n  $reminder_04:05:Example\n\n3) $a_hug,$a_kiss,$a_slap,$a_(any thing you want Nyu to do for someone)``` '.format(message)
+                msg = '```1)About Me : $AboutMe\n\n2)For Chatting : $c[Your Chat Message]\n\n3)Setting Reminder : $reminder_HH:MM:Description\n\nExample for setting reminder in 4  hours 5 minutes \n  $reminder_04:05:Example\n\n4)$a_hug,$a_kiss,$a_slap,$a_(any thing you want Nyu to do for someone)``` '.format(message)
                 await client.send_message(message.channel, msg)
             elif message.content.startswith('$a_'):
                 #print("hey")
@@ -133,6 +133,16 @@ async def on_message(message):
 
                     #print (rl)
                 await client.send_message(message.channel, msg)
+            elif message.content.startswith('$AboutMe'):
+                embed = discord.Embed(title="About Me", url="https://discordbots.org/bot/426047120781344768",description="Nyu ", color=0xff00ff)
+                embed.set_author(name="Nyu",url="https://discordbots.org/bot/426047120781344768", icon_url = "https://images.discordapp.net/avatars/426047120781344768/0402c327f7e5bbfdd86bcb33dc69417e.png?size=512")
+                embed.set_thumbnail(url="https://images.discordapp.net/avatars/426047120781344768/0402c327f7e5bbfdd86bcb33dc69417e.png?size=512")
+                embed.add_field(name='My Server', value = 'https://discord.gg/PVRjAcX', inline=False)
+                embed.add_field(name='Help', value= '$help', inline = False)
+                await client.send_message(message.channel, embed=embed)
+
+
+
 
 
 async def my_background_task():
@@ -176,6 +186,8 @@ async def on_ready():
      print('Logged in as')
      print(client.user.name)
      print(client.user.id)
+     game=discord.Game(name='$help')
+     await client.change_presence(game=game)
      print('------')
 
 client.loop.create_task(my_background_task())
