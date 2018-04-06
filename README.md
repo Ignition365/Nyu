@@ -22,7 +22,7 @@ For Random action you want to do on second person eg kiss,lick,slap etc etc</br>
 ```
 $a_lick @MentionUser
 ```
-![alt text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/cuddle.JPG)</br>
+![alt text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/acex.JPG)</br>
 For Help</br>
 ```
 $help
