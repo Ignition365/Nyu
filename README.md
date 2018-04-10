@@ -36,8 +36,8 @@ $AboutMe
 ```
 $alarm_HH:MM:Name:repetation
 ```
-Note : </br>
--Here Repetation is a number with digits from 1-7 .Each digit represents week day .</br>
+Note </br>
+Here Repetation is a number with digits from 1-7 .Each digit represents week day .</br>
 1. Monday
 2. Tuesday
 3. Wednesday
@@ -46,7 +46,9 @@ Note : </br>
 6. Saturday
 7. Sunday
 </br>
+
 For Example to set Alarm at 17:20(UTC/GMT time zone) which repeat on Thursday and Saturday everyweek</br>
+
 ```
 $alarm_17:20:Example:46
 ```
