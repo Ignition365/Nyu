@@ -159,6 +159,10 @@ async def on_message(message):
                 embed.add_field(name='Help', value= '$help', inline = False)
                 await client.send_message(message.channel, embed=embed)
             elif message.content.startswith('$alarm_'):
+                if message.server is  None:
+                    await client.send_message(message.channel, 'I don\'t set alarm in private messages :p'.format(message))
+                    return
+
                 msg = message.content[7:].strip().split(':')
                 repeat='1234567'
                 des = 'Alarm'
@@ -167,8 +171,8 @@ async def on_message(message):
                     mm = msg[1]
                 except IndexError:
                     error_message = 'Please write in correct format \n ```$alarm_HH:MM:Name of Alarm:week day repeat(1=monday,..,7=Sunday (default every day repeat))```' \
-                                    '\nNote:\nTime sahll be in 24h format and in UTC/GMT time zone for more information type ```$help```' \
-                                    '\n UTC/GMT standard time right now is '+(str(datetime.utcnow().today())).split('.')[0]
+                                    '\nNote:\nTime shall be in **24h format** and in UTC/GMT time zone for more information type ```$help```' \
+                                    '\n UTC/GMT standard time right now is '+'**'+(str(datetime.utcnow().today())).split('.')[0]+'**'
                     await client.send_message(message.channel, error_message.format(message))
                     return
                 try:
@@ -182,11 +186,18 @@ async def on_message(message):
                 #Check Validity of INPUT
                 ##print (hh + '\n' +  mm  + '\n' +  repeat)
                 if dataj.RepresentsInt(hh)==False or dataj.RepresentsInt(mm)==False or dataj.RepresentsInt(repeat) == False:
-                    await client.send_message(message.channel, 'Input Valid 24H time or check repeat(1-7)'.format(message))
+                    error_message = 'Invalid time input \n ```$alarm_HH:MM:Name of Alarm:week day repeat(1=monday,..,7=Sunday (default every day repeat))```' \
+                                    '\nNote:\nTime shall be in **24h format** and in UTC/GMT time zone for more information type ```$help```' \
+                                    '\n UTC/GMT standard time right now is ' + '**' + \
+                                    (str(datetime.utcnow().today())).split('.')[0] + '**'
+                    await client.send_message(message.channel, error_message.format(message))
                     return
-
                 if int(hh) > 24 or int(mm) > 60:
-                    await client.send_message(message.channel, 'Input Valid 24H time or check repeat(1-7)_*'.format(message))
+                    error_message = 'Invalid Time input \n ```$alarm_HH:MM:Name of Alarm:week day repeat(1=monday,..,7=Sunday (default every day repeat))```' \
+                                    '\nNote:\nTime shall be in **24h format** and in UTC/GMT time zone for more information type ```$help```' \
+                                    '\n UTC/GMT standard time right now is ' + '**' + \
+                                    (str(datetime.utcnow().today())).split('.')[0] + '**'
+                    await client.send_message(message.channel, error_message.format(message))
                     return
 
                 if len(hh) == 1:
@@ -199,7 +210,7 @@ async def on_message(message):
                 dataj.add_alarm(str(hh+':'+mm),des,int(message.channel.id),"".join(OrderedDict.fromkeys(repeat)),guild_id)
 
 
-                await client.send_message(message.channel,'Your Alarm is successfully set for '+hh+':'+mm+' with repeation on '+ repeat+' weekdays where 1=Monday,...,7=Sunday and 0=repeat'.format(message))
+                await client.send_message(message.channel,'Your Alarm is successfully set for '+hh+':'+mm+' with repeation on '+ repeat+' weekdays where 1=Monday,...,7=Sunday default repeat everyday'.format(message))
 
             elif message.content.startswith('$list_alarm'):
                 xx = int(message.channel.server.id)
@@ -208,11 +219,16 @@ async def on_message(message):
                 await client.send_message(message.channel , '```'+msg+'```'.format(message))
             elif message.content.startswith('$delete_alarm'):
                 msg = message.content[13:]
-                rm = int(msg.strip())
+                rm = msg.strip()
+                if rm =='':
+                    await client.send_message(message.channel,'SEE ALARM ID of alarm by ```$list_alarm``` \nand delete by ```$delete_alarm [ALARM ID]```'.format(message))
+                    return
+
+
                 if dataj.RepresentsInt(rm)==False:
                     await client.send_message(message.channel,'SEE ALARM ID of alarm by ```$list_alarm``` \nand delete by ```$delete_alarm [ALARM ID]```'.format(message))
 
-                await client.send_message(message.channel, dataj.delete_repeat_alarm(rm,int(message.channel.server.id)).format(message))
+                await client.send_message(message.channel, dataj.delete_repeat_alarm(int(rm),int(message.channel.server.id)).format(message))
 
 
 
@@ -291,4 +307,4 @@ async def on_ready():
 
 client.loop.create_task(my_background_task())
 client.loop.create_task(my_background_task_2())
-client.run('xyz')
+client.run('xx-id')
