@@ -32,6 +32,36 @@ __**About Me**__</br>
 ```
 $AboutMe
 ```
+**For Alarm**</br>
+```
+$alarm_HH:MM:Name:repetation
+```
+Note : </br>
+-Here Repetation is a number with digits from 1-7 .Each digit represents week day .</br>
+1. Monday
+2. Tuesday
+3. Wednesday
+4. Thursday
+5. Friday
+6. Saturday
+7. Sunday
+</br>
+For Example to set Alarm at 17:20(UTC/GMT time zone) which repeat on Thursday and Saturday everyweek</br>
+```
+$alarm_17:20:Example:46
+```
+Also all time should be in **UTC/GMT time and 24H format** to know current UTC/GMT time just type **$alarm_**.
+</br>
+**For getting list of alarms on a particular server and get the ALARM ID**</br>
+```
+$list_alarm
+```
+**Delete Alarms**</br>
+```
+$delete_alarm [ALARM ID]
+``` 
+</br>
+
 ---
 
 Package used 
