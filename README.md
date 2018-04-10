@@ -5,32 +5,34 @@ A basic Chatting and reminder Bot can send reminder at specified interval of tim
 **BOT PREFIX**
 > $
 
-Commands and Functions</br>
-For Chatting</br>
+Commands and Functions</br></br>
+__**For Chatting**__</br>
 ```
 $c(Your message)
 ```
 ![alt text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/Nyu_git.JPG)
-</br>
-For Setting Reminder </br>
+</br></br>
+__**For Setting Reminder**__ </br>
 ```
 $reminder_HH:MM:Description #Where HH , MM are number of hours and minutes after you want Bot to send Reminder
 ```
 ![alt text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/remm.JPG)
-</br>
-For Random action you want to do on second person eg kiss,lick,slap etc etc</br>
+</br></br>
+__**For Random action you want to do on second person eg kiss,lick,slap etc etc**__</br>
 ```
 $a_lick @MentionUser
 ```
-![alt text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/acex.JPG)</br>
-For Help</br>
+![alt text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/acex.JPG)</br></br>
+__**For Help**__</br>
 ```
 $help
 ```
 ![alt text](https://github.com/amangautam015/HybridNyu/blob/master/Nyu_help.JPG)</br></br>
-
----------------------------------------------------------------------------------------------------------</br>
----------------------------------------------------------------------------------------------------------</br>
+__**About Me**__</br>
+```
+$AboutMe
+```
+---
 
 Package used 
 > discord.py
