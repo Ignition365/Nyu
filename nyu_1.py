@@ -96,9 +96,29 @@ async def on_message(message):
 
                 await client.send_message(message.channel, msg)
 
+            # elif message.content.startswith('$help'):
+            #     msg = '```1)About Me : $AboutMe\n\n2)For Chatting : $c[Your Chat Message]\n\n3)Setting Reminder : $reminder_HH:MM:Description\n\nExample for setting reminder in 4  hours 5 minutes \n  $reminder_04:05:Example\n\n4)$a_hug,$a_kiss,$a_slap,$a_(any thing you want Nyu to do for someone)``` '.format(message)
+            #     await client.send_message(message.channel, msg)
             elif message.content.startswith('$help'):
-                msg = '```1)About Me : $AboutMe\n\n2)For Chatting : $c[Your Chat Message]\n\n3)Setting Reminder : $reminder_HH:MM:Description\n\nExample for setting reminder in 4  hours 5 minutes \n  $reminder_04:05:Example\n\n4)$a_hug,$a_kiss,$a_slap,$a_(any thing you want Nyu to do for someone)``` '.format(message)
-                await client.send_message(message.channel, msg)
+                embed = discord.Embed(title="HELP", description="$help",color=0xff00ff)
+                embed.set_author(name="Nyu", url='https://discordbots.org/bot/426047120781344768?',
+                                 icon_url='https://images.discordapp.net/avatars/426047120781344768/0402c327f7e5bbfdd86bcb33dc69417e.png?size=512')
+                embed.add_field(name="Chatting", value="__**`$c[Your Chat Message]`**__\n", inline=False)
+                embed.add_field(name="For Random action",
+                                value="$a_[Any action] @MentionUser \nExample __**`$a_lick @Nyu`**__\n", inline=False)
+                embed.add_field(name="Setting Reminder", value="__**`$reminder_HH:MM:Description`**__\n", inline=False)
+                embed.add_field(name="Setting Alarm",
+                                value="__**`$alarm_HH:MM:Name:repeat`**__\nNote:\nTime is in UTC/GMT time zone and 24h format\nRepeat part should have digits 1-7 where\n1:Monday\n2:Tuesday\n3:Wednesday\n4:Thursday\n5:Friday\n6:Saturday\n7:Sunday\nExample to set alarm at 17:05 that repeat on every monday and thursday\n__**`$alarm_17:05:Example:16`**__\n",
+                                inline=False)
+                embed.add_field(name="List Alarms and alarm ID on that serever", value="__**`$list_alarm`**__\n",
+                                inline=False)
+                embed.add_field(name="Delete Alarm", value="__**`$delete_alarm [alarm ID]`**__", inline=False)
+                embed.add_field(name="About Me", value="__**`$AboutMe`**__", inline=False)
+                embed.add_field(name="UTC/GMT time right now", value="__**`$gmtnow`**__", inline=False)
+                embed.add_field(name="For More information visit", value="https://discordbots.org/bot/426047120781344768", inline=False)
+                embed.add_field(name="Join my home server :^D", value="https://discord.gg/PVRjAcX", inline=False)
+                embed.set_footer(text="By@Nyu")
+                await client.send_message(message.channel,embed=embed)
             elif message.content.startswith('$a_'):
                 ##print("hey")
                 k=randint(0, 14)
@@ -157,23 +177,35 @@ async def on_message(message):
                 embed.set_thumbnail(url="https://images.discordapp.net/avatars/426047120781344768/0402c327f7e5bbfdd86bcb33dc69417e.png?size=512")
                 embed.add_field(name='My Server', value = 'https://discord.gg/PVRjAcX', inline=False)
                 embed.add_field(name='Help', value= '$help', inline = False)
+                embed.set_footer(text="By@Nyu")
                 await client.send_message(message.channel, embed=embed)
             elif message.content.startswith('$alarm_'):
                 if message.server is  None:
-                    await client.send_message(message.channel, 'I don\'t set alarm in private messages :p'.format(message))
+                    await client.send_message(message.channel, '__**I don\'t set alarm in private messages :p**__'.format(message))
                     return
 
                 msg = message.content[7:].strip().split(':')
                 repeat='1234567'
                 des = 'Alarm'
+
+                
+                error_message = discord.Embed(title="Error", description="In giving alarm command",color=0xff00ff)
+                error_message.set_author(name="Nyu", url='https://discordbots.org/bot/426047120781344768?',
+                                 icon_url='https://images.discordapp.net/avatars/426047120781344768/0402c327f7e5bbfdd86bcb33dc69417e.png?size=512')
+                error_message.add_field(name="Correct Format",
+                                value="__**`$alarm_HH:MM:Name of Alarm:repeat`**__\nRepeat have digits 1-7(1=monday,..,7=Sunday (default every day repeat))\nAny other digit less than 1 or more than 7  will be ignored",
+                                inline=False)
+                error_message.add_field(name="Important Points ",
+                                value='--Time shall be in 24h format and in UTC/GMT time zone\n--More information type __**`$help`**__\n--UTC/GMT standard time right now is ' + '__**' + ((
+                    str(datetime.utcnow().today())).split('.')[0])[:-3] + '**__',inline=False)
+                error_message.set_footer(text="By@Nyu")
+                
                 try:
                     hh = msg[0]
                     mm = msg[1]
                 except IndexError:
-                    error_message = 'Please write in correct format \n ```$alarm_HH:MM:Name of Alarm:week day repeat(1=monday,..,7=Sunday (default every day repeat))```' \
-                                    '\nNote:\nTime shall be in **24h format** and in UTC/GMT time zone for more information type ```$help```' \
-                                    '\n UTC/GMT standard time right now is '+'**'+(str(datetime.utcnow().today())).split('.')[0]+'**'
-                    await client.send_message(message.channel, error_message.format(message))
+
+                    await client.send_message(message.channel, embed=error_message)
                     return
                 try:
                     des = msg[2].strip()
@@ -186,18 +218,12 @@ async def on_message(message):
                 #Check Validity of INPUT
                 ##print (hh + '\n' +  mm  + '\n' +  repeat)
                 if dataj.RepresentsInt(hh)==False or dataj.RepresentsInt(mm)==False or dataj.RepresentsInt(repeat) == False:
-                    error_message = 'Invalid time input \n ```$alarm_HH:MM:Name of Alarm:week day repeat(1=monday,..,7=Sunday (default every day repeat))```' \
-                                    '\nNote:\nTime shall be in **24h format** and in UTC/GMT time zone for more information type ```$help```' \
-                                    '\n UTC/GMT standard time right now is ' + '**' + \
-                                    (str(datetime.utcnow().today())).split('.')[0] + '**'
-                    await client.send_message(message.channel, error_message.format(message))
+
+                    await client.send_message(message.channel, embed=error_message)
                     return
                 if int(hh) > 24 or int(mm) > 60:
-                    error_message = 'Invalid Time input \n ```$alarm_HH:MM:Name of Alarm:week day repeat(1=monday,..,7=Sunday (default every day repeat))```' \
-                                    '\nNote:\nTime shall be in **24h format** and in UTC/GMT time zone for more information type ```$help```' \
-                                    '\n UTC/GMT standard time right now is ' + '**' + \
-                                    (str(datetime.utcnow().today())).split('.')[0] + '**'
-                    await client.send_message(message.channel, error_message.format(message))
+                    
+                    await client.send_message(message.channel, embed=error_message)
                     return
 
                 if len(hh) == 1:
@@ -208,9 +234,18 @@ async def on_message(message):
 
                 #print('add')
                 dataj.add_alarm(str(hh+':'+mm),des,int(message.channel.id),"".join(OrderedDict.fromkeys(repeat)),guild_id)
+                success_alarm = discord.Embed(title="Alarm successfully set", description=des,color=0xff00ff)
+                success_alarm.set_author(name="Nyu", url='https://discordbots.org/bot/426047120781344768?',
+                                         icon_url='https://images.discordapp.net/avatars/426047120781344768/0402c327f7e5bbfdd86bcb33dc69417e.png?size=512')
+                success_alarm.add_field(name="Time", value=str(hh+':'+mm), inline=False)
+                success_alarm.add_field(name="Repeat", value="".join(OrderedDict.fromkeys(repeat)), inline=False)
+                success_alarm.add_field(name="Note",
+                                        value="Time in UTC/GMT time zone\nCurrent UTC/GMT time :" + '__**' + ((
+                                            str(datetime.utcnow().today())).split('.')[0])[:-3] + '**__' + "\nweekdays where 1=Monday,...,7=Sunday default repeat everyday\n__**`$help`**__ for more details",
+                                        inline=False)
+                success_alarm.set_footer(text="By@Nyu")
 
-
-                await client.send_message(message.channel,'Your Alarm is successfully set for '+hh+':'+mm+' with repeation on '+ repeat+' weekdays where 1=Monday,...,7=Sunday default repeat everyday'.format(message))
+                await client.send_message(message.channel,embed=success_alarm)
 
             elif message.content.startswith('$list_alarm'):
                 xx = int(message.channel.server.id)
@@ -230,7 +265,10 @@ async def on_message(message):
 
                 await client.send_message(message.channel, dataj.delete_repeat_alarm(int(rm),int(message.channel.server.id)).format(message))
 
+            elif message.content.startswith('$gmtnow'):
+                msg= (str(datetime.utcnow().today())).split('.')[0]
 
+                await client.send_message(message.channel, '```' + msg[:-3] + '```'.format(message))
 
 
 
@@ -263,6 +301,7 @@ async def my_background_task():
 
                 embed = discord.Embed(title="Reminder", description=str(dss[0][0]), color=0x00ff00)
                 embed.set_author(name='Nyu', icon_url='https://images.discordapp.net/avatars/426047120781344768/0402c327f7e5bbfdd86bcb33dc69417e.png?size=512')
+                embed.set_footer(text="By@Nyu")
                 await client.send_message( discord.Object(id=str(channel_id[0][0])), embed=embed)
                 dataj.delete_reminder(id[0][0])
 
@@ -292,8 +331,18 @@ async def my_background_task_2():
                                  icon_url='https://images.discordapp.net/avatars/426047120781344768/0402c327f7e5bbfdd86bcb33dc69417e.png?size=512')
                 embed.add_field(name='ALARM ID', value=str(row_alarm[0]), inline=True)
                 embed.add_field(name='     Time(UTC/GMT)', value=str(row_alarm[1]), inline=True)
+                embed.set_footer(text="By@Nyu")
                 await client.send_message(discord.Object(id=str(tunnel)), embed=embed)
         await asyncio.sleep(60)  # task runs every 60 seconds
+
+async def status_task():
+    while True:
+
+        glo_msg = ((str(datetime.utcnow().today())).split('.')[0])[:-3]
+        game = discord.Game(name=glo_msg[10:]+' GMT time' + '\n | $help')
+        await client.change_presence(game=game)
+        await asyncio.sleep(5)
+
 
 
 @client.event
@@ -301,8 +350,7 @@ async def on_ready():
      print('Logged in as')
      print(client.user.name)
      print(client.user.id)
-     game=discord.Game(name='$help')
-     await client.change_presence(game=game)
+     client.loop.create_task(status_task())
      print('------')
 
 client.loop.create_task(my_background_task())
