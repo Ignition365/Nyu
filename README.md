@@ -27,7 +27,8 @@ __**For Help**__</br>
 ```
 $help
 ```
-![alt text](https://github.com/amangautam015/HybridNyu/blob/master/Nyu_help.JPG)</br></br>
+
+
 __**About Me**__</br>
 ```
 $AboutMe
