@@ -248,11 +248,19 @@ async def on_message(message):
                 await client.send_message(message.channel,embed=success_alarm)
 
             elif message.content.startswith('$list_alarm'):
+                if message.server is None:
+                    await client.send_message(message.channel,
+                                              '__**I don\'t set alarm in private messages :p**__'.format(message))
+                    return
                 xx = int(message.channel.server.id)
                 msg = dataj.return_l(xx)
 
                 await client.send_message(message.channel , '```'+msg+'```'.format(message))
             elif message.content.startswith('$delete_alarm'):
+                if message.server is None:
+                    await client.send_message(message.channel,
+                                              '__**I don\'t set alarm in private messages :p**__'.format(message))
+                    return
                 msg = message.content[13:]
                 rm = msg.strip()
                 if rm =='':
