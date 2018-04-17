@@ -9,20 +9,35 @@ Commands and Functions</br></br>
 __**For Chatting**__</br>
 ```
 $c(Your message)
+
+Example:
+
+$cHi Nyu
 ```
-![alt text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/Nyu_git.JPG)
-</br></br>
+
+</br>
+
 __**For Setting Reminder**__ </br>
 ```
 $reminder_HH:MM:Description #Where HH , MM are number of hours and minutes after you want Bot to send Reminder
+
+Example to send Reminder after 5Hours 40Minutes
+
+$reminder_05:40:ExampleReminder
 ```
-![alt text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/remm.JPG)
-</br></br>
+
+</br>
+
 __**For Random action you want to do on second person eg kiss,lick,slap etc etc**__</br>
 ```
 $a_lick @MentionUser
+
+Example :
+@a_kiss @Nyu
 ```
-![alt text](https://raw.githubusercontent.com/amangautam015/HybridNyu/master/acex.JPG)</br></br>
+
+</br>
+
 __**For Help**__</br>
 ```
 $help
