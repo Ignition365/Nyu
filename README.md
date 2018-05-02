@@ -28,12 +28,12 @@ $reminder_05:40:ExampleReminder
 
 </br>
 
-__**For Random action you want to do on second person eg kiss,lick,slap etc etc**__</br>
+__**For Translation**__</br>
 ```
-$a_lick @MentionUser
+$t Random language 
 
 Example :
-@a_kiss @Nyu
+$t Hallo, Wie gehts .!
 ```
 
 </br>
