@@ -82,6 +82,14 @@ $delete_alarm [ALARM ID]
 
 ---
 
+__**For Random action you want to do on second person eg kiss,lick,slap etc etc**__</br>
+```
+$a_lick @MentionUser
+
+Example :
+@a_kiss @Nyu
+```
+
 Package used 
 > discord.py
 
